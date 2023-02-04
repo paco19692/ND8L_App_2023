@@ -31,7 +31,7 @@ const Create = () => {
 
     if (data) {
       console.log(data);
-      setFormError(null);
+      setFormError("Update was successful.");
       navigate("/");
     }
 

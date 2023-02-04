@@ -11,6 +11,30 @@ const Update = () => {
   const [Nhandicap, setNhandicap] = useState("");
   const [Ohandicap, setOhandicap] = useState("");
   const [Ptotalpoints, setPtotalpoints] = useState("");
+  const [formError, setFormError] = useState(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!playername || !teamname || !Nhandicap || !Ohandicap || !Ptotalpoints) {
+      setFormError("Please fill in all the fields correctly.");
+      return;
+    }
+    const { data, error } = await supabase
+      .from("players")
+      .update({ playername, teamname, Nhandicap, Ohandicap, Ptotalpoints })
+      .eq("id", id);
+
+    if (error) {
+      console.log(error);
+      setFormError("Please fill all the fields correctly");
+    }
+    if (data) {
+      console.log(data);
+      setFormError("Update was successful");
+      navigate("/");
+    }
+  };
 
   useEffect(() => {
     const fetchPlayer = async () => {
@@ -38,7 +62,7 @@ const Update = () => {
 
   return (
     <div className="page update">
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="playername">Player Name:</label>
         <input
           type="text"
@@ -80,7 +104,7 @@ const Update = () => {
 
         <button>Update Player Record</button>
 
-        {/*formError && <p className="error">{formError}</p>*/}
+        {formError && <p className="error">{formError}</p>}
       </form>
     </div>
   );
