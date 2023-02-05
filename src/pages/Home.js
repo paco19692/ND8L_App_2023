@@ -7,6 +7,11 @@ import PlayerCard from "../components/PlayerCard";
 const Home = () => {
   const [fetchError, setFetchError] = useState(null);
   const [players, setPlayers] = useState(null);
+  const handleDelete = (id) => {
+    setPlayers((prevPlayers) => {
+      return prevPlayers.filter((pl) => pl.id !== id);
+    });
+  };
 
   useEffect(() => {
     const fetchPlayers = async () => {
@@ -34,7 +39,11 @@ const Home = () => {
           {/* order-by buttons */}
           <div className="player-grid">
             {players.map((player) => (
-              <PlayerCard key={player.id} player={player} />
+              <PlayerCard
+                key={player.id}
+                player={player}
+                onDelete={handleDelete}
+              />
             ))}
           </div>
         </div>
