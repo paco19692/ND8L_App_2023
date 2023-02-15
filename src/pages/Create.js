@@ -10,32 +10,51 @@ const Create = () => {
   const [Nhandicap, setNhandicap] = useState("");
   const [Ohandicap, setOhandicap] = useState("");
   const [Ptotalpoints, setPtotalpoints] = useState("");
+  const [breakrun, setBreakrun] = useState("");
+  const [eightbrk, setEightbrk] = useState("");
+  const [matchwins, setMatchwins] = useState("");
+  const [weeksplyd, setWeeksplyd] = useState("");
   const [formError, setFormError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!playername || !teamname || !Nhandicap || !Ohandicap || !Ptotalpoints) {
+    if (
+      !playername ||
+      !teamname ||
+      !Nhandicap ||
+      !Ohandicap ||
+      !Ptotalpoints ||
+      !breakrun ||
+      !eightbrk ||
+      !matchwins ||
+      !weeksplyd
+    ) {
       setFormError("Please fill in all the fields correctly.");
       return;
     }
 
-    const { data, error } = await supabase
-      .from("players")
-      .insert([{ playername, teamname, Nhandicap, Ohandicap, Ptotalpoints }]);
+    const { data, error } = await supabase.from("players").insert([
+      {
+        playername,
+        teamname,
+        Nhandicap,
+        Ohandicap,
+        Ptotalpoints,
+        eightbrk,
+        matchwins,
+        weeksplyd,
+      },
+    ]);
 
     if (error) {
-      console.log(error);
       setFormError("Please fill in all the fields correctly.");
     }
 
     if (data) {
-      console.log(data);
-      setFormError("Update was successful.");
-      navigate("/");
+      setFormError("null");
+      navigate("/home");
     }
-
-    console.log(playername, teamname, Nhandicap, Ohandicap, Ptotalpoints);
   };
 
   return (
@@ -50,7 +69,8 @@ const Create = () => {
         />
 
         <label htmlFor="teamname">Team Name:</label>
-        <textarea
+        <input
+          type="text"
           id="teamname"
           value={teamname}
           onChange={(e) => setTeamname(e.target.value)}
@@ -78,6 +98,38 @@ const Create = () => {
           id="Ptotalpoints"
           value={Ptotalpoints}
           onChange={(e) => setPtotalpoints(e.target.value)}
+        />
+
+        <label htmlFor="breakrun">Players total break and runs:</label>
+        <input
+          type="number"
+          id="breakrun"
+          value={breakrun}
+          onChange={(e) => setBreakrun(e.target.value)}
+        />
+
+        <label htmlFor="eightbrk">Players total 8s on breaks:</label>
+        <input
+          type="number"
+          id="eightbrk"
+          value={eightbrk}
+          onChange={(e) => setEightbrk(e.target.value)}
+        />
+
+        <label htmlFor="matchwins">Players total match wins:</label>
+        <input
+          type="number"
+          id="matchwins"
+          value={matchwins}
+          onChange={(e) => setMatchwins(e.target.value)}
+        />
+
+        <label htmlFor="weeksplyd">Players total weeks played:</label>
+        <input
+          type="number"
+          id="weeksplyd"
+          value={weeksplyd}
+          onChange={(e) => setWeeksplyd(e.target.value)}
         />
 
         <button>Create Player</button>

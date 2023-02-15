@@ -21,6 +21,7 @@ const PlayerCard = ({ player, onDelete }) => {
       <h3>{player.playername}</h3>
       <p>{player.teamname}</p>
       <div className="newhandicap">{player.Nhandicap}</div>
+      <div className="ptotalpoints">{player.Ptotalpoints}</div>
       <div className="buttons">
         <Link to={"/" + player.id}>
           <i className="material-icons">edit</i>

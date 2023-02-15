@@ -14,6 +14,7 @@ function App() {
         <h1>ND8L Pool League</h1>
         <Link to="/home">Home</Link>
         <Link to="/create">Create New Player</Link>
+        <Link to="/">Login</Link>
       </nav>
       <Routes>
         <Route path="/" element={<Login />} />
