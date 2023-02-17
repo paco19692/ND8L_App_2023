@@ -49,11 +49,8 @@ const Create = () => {
 
     if (error) {
       setFormError("Please fill in all the fields correctly.");
-    }
-
-    if (data) {
+    } else if (data) {
       setFormError("null");
-      navigate("/home");
     }
   };
 

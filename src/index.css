@@ -137,3 +137,22 @@ form button {
   position: relative;
   text-align: center;
 }
+
+/* team grid */
+.team-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-rows: 1fr;
+  gap: 10px;
+}
+
+.team-card {
+  width: 100%;
+  margin-top: 10px;
+  padding: 20px;
+  background: #fff;
+  box-sizing: border-box;
+  border-radius: 6px;
+  position: relative;
+  text-align: center;
+}

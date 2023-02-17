@@ -25,7 +25,6 @@ const Home = () => {
       if (error) {
         setFetchError("Could not fetch the players");
         setPlayers(null);
-        console.log(error);
       }
       if (data) {
         setPlayers(data);
