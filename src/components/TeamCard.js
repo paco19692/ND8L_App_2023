@@ -1,12 +1,25 @@
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
+
 const TeamCard = ({ player }) => {
   return (
-    <div className="team-card">
-      <p>
-        {player.playername} {player.teamname} {player.Nhandicap}{" "}
-        {player.Ohandicap} {player.breakrun} {player.eightbrk}{" "}
-        {player.matchwins} {player.weeksplyd} {player.Ptotalpoints}
-      </p>
-    </div>
+    <Container>
+      <Grid container>
+        <Grid item lg={3}>
+          {player.playername}
+        </Grid>
+        <Grid item lg={2}>
+          {player.teamname}
+        </Grid>
+        <Grid item>{player.Nhandicap}</Grid>
+        <Grid item>{player.Ohandicap}</Grid>
+        <Grid item>{player.breakrun}</Grid>
+        <Grid item>{player.eightbrk}</Grid>
+        <Grid item>{player.matchwins}</Grid>
+        <Grid item>{player.weeksplyd}</Grid>
+        <Grid item>{player.Ptotalpoints}</Grid>
+      </Grid>
+    </Container>
   );
 };
 
