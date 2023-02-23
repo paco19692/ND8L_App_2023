@@ -7,10 +7,14 @@ import TeamTable from "../components/TeamTable";
 const TeamPage = () => {
   const [fetchError, setFetchError] = useState(null);
   const [players, setPlayers] = useState(null);
+  const [orderBy, setOrderBy] = useState("teamname");
 
   useEffect(() => {
     const fetchPlayers = async () => {
-      const { data, error } = await supabase.from("players").select();
+      const { data, error } = await supabase
+        .from("players")
+        .select()
+        .order(orderBy, { ascending: true });
 
       if (error) {
         setFetchError("Could not fetch players from the database");
@@ -23,7 +27,7 @@ const TeamPage = () => {
     };
 
     fetchPlayers();
-  }, []);
+  }, [orderBy]);
 
   console.log(players);
 
