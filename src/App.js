@@ -7,7 +7,8 @@ import Update from "./pages/Update";
 import Login from "./pages/loginPage";
 import Success from "./pages/successPage";
 import TeamPage from "./pages/TeamPage";
-import MatchPage from "./pages/MatchPage";
+import MatchPageA from "./pages/MatchPageA";
+import MatchPageB from "./pages/MatchPageB";
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
         <Link to="/create">Create New Player</Link>
         <Link to="/">Login</Link>
         <Link to="/teampage">Team Page</Link>
-        <Link to="/matchpage">Match Page</Link>
+        <Link to="/matchpagea">Match Page A</Link>
+        <Link to="/matchpageb">Match Page B</Link>
       </nav>
       <Routes>
         <Route path="/" element={<Login />} />
@@ -27,7 +29,8 @@ function App() {
         <Route path="/create" element={<Create />} />
         <Route path="/:id" element={<Update />} />
         <Route path="/teampage" element={<TeamPage />} />
-        <Route path="/matchpage" element={<MatchPage />} />
+        <Route path="/matchpagea" element={<MatchPageA />} />
+        <Route path="/matchpageb" element={<MatchPageB />} />
       </Routes>
     </BrowserRouter>
   );

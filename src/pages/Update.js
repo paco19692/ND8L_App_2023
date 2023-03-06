@@ -82,8 +82,7 @@ const Update = () => {
         setBreakrun(data.breakrun);
         setMatchwins(data.matchwins);
         setWeeksplyd(data.weeksplyd);
-        console.log(data);
-      }
+       }
     };
 
     fetchPlayer();
