@@ -11,7 +11,10 @@ const TeamPage = () => {
 
   useEffect(() => {
     const fetchPlayers = async () => {
-      const { data, error } = await supabase.from("players").select();
+      const { data, error } = await supabase
+        .from("players")
+        .select()
+        .order(orderBy, { ascending: true });
 
       if (error) {
         setFetchError("Could not fetch players from the database");
@@ -24,7 +27,8 @@ const TeamPage = () => {
     };
 
     fetchPlayers();
-  }, []);
+    
+  }, [orderBy]);
 
   return (
     <div>
