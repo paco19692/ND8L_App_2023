@@ -5,37 +5,29 @@ import supabase from "../config/supabaseClient";
 const MatchPageA = () => {
   const navigate = useNavigate();
 
-  const [matplayername, setMatplayername] = useState("");
-  const [matteamname, setMatteamname] = useState("");
-  const [matnhandicap, setMatnhandicap] = useState("");
-  const [matracegames, setMatracegames] = useState("");
-  const [matgameswon, setMatgameswon] = useState("");
-  const [matbreakruns, setMatbreakruns] = useState("");
-  const [mateightbreaks, setMateightbreaks] = useState("");
-  const [mattotalpoints, setMattotalpoints] = useState("");
-  const [matwinorloss, setMatwinorloss] = useState("");
+  const [matplayername, setPlayernamemat] = useState("");
+  const [player_id, setPlayer_id] = useState("");
+  const [matteamname, setTeamnamemat] = useState("");
+  const [matnhandicap, setNhandicapmat] = useState("");
+  const [matracegames, setRacegamesmat] = useState("");
+  const [matgameswon, setGameswonmat] = useState("");
+  const [matbreakruns, setBreakrunsmat] = useState("");
+  const [mateightbreaks, setEightbreaksmat] = useState("");
+  const [mattotalpoints, setTotalpointsmat] = useState("");
+  const [matwinorloss, setWinorlossmat] = useState("");
   const [formError, setFormError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      !matplayername ||
-      !matteamname ||
-      !matnhandicap ||
-      !matracegames ||
-      !matgameswon ||
-      !matbreakruns ||
-      !mateightbreaks ||
-      !mattotalpoints ||
-      !matwinorloss
-    ) {
-      setFormError("Please fill in all the fields correctly.");
+    if (!matplayername || !matteamname || !matnhandicap) {
+      setFormError("Please fill in stupid the fields correctly.");
       return;
     }
 
     const { data, error } = await supabase.from("matches").insert([
       {
+        player_id,
         matplayername,
         matteamname,
         matnhandicap,
@@ -60,28 +52,36 @@ const MatchPageA = () => {
     <div className="page create">
       <p className="success-card">Match Player A</p>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="playername">Player Name:</label>
-        <input
-          type="text"
-          id="playername"
-          value={matplayername}
-          onChange={(e) => setMatplayername(e.target.value)}
-        />
-
-        <label htmlFor="teamname">Team Name:</label>
-        <input
-          type="text"
-          id="teamname"
-          value={matteamname}
-          onChange={(e) => setMatteamname(e.target.value)}
-        />
-
-        <label htmlFor="Nhandicap">Handicap:</label>
+        <label htmlFor="player_id">Player ID:</label>
         <input
           type="number"
-          id="Nhandicap"
+          id="player_id"
+          value={player_id}
+          onChange={(e) => setPlayer_id(e.target.value)}
+        />
+
+        <label htmlFor="matplayername">Player Name:</label>
+        <input
+          type="text"
+          id="matplayername"
+          value={matplayername}
+          onChange={(e) => setPlayernamemat(e.target.value)}
+        />
+
+        <label htmlFor="matteamname">Team Name:</label>
+        <input
+          type="text"
+          id="matteamname"
+          value={matteamname}
+          onChange={(e) => setTeamnamemat(e.target.value)}
+        />
+
+        <label htmlFor="matnhandicap">Handicap:</label>
+        <input
+          type="number"
+          id="matnhandicap"
           value={matnhandicap}
-          onChange={(e) => setMatnhandicap(e.target.value)}
+          onChange={(e) => setNhandicapmat(e.target.value)}
         />
 
         <label htmlFor="matracegames">Race:</label>
@@ -89,7 +89,7 @@ const MatchPageA = () => {
           type="number"
           id="matracegames"
           value={matracegames}
-          onChange={(e) => setMatracegames(e.target.value)}
+          onChange={(e) => setRacegamesmat(e.target.value)}
         />
 
         <label htmlFor="matgameswon">Games Won:</label>
@@ -97,7 +97,7 @@ const MatchPageA = () => {
           type="number"
           id="matgameswon"
           value={matgameswon}
-          onChange={(e) => setMatgameswon(e.target.value)}
+          onChange={(e) => setGameswonmat(e.target.value)}
         />
 
         <label htmlFor="matbreakruns">Players total break and runs:</label>
@@ -105,7 +105,7 @@ const MatchPageA = () => {
           type="number"
           id="matbreakruns"
           value={matbreakruns}
-          onChange={(e) => setMatbreakruns(e.target.value)}
+          onChange={(e) => setBreakrunsmat(e.target.value)}
         />
 
         <label htmlFor="mateightbreaks">Players total 8s on breaks:</label>
@@ -113,7 +113,7 @@ const MatchPageA = () => {
           type="number"
           id="mateightbreaks"
           value={mateightbreaks}
-          onChange={(e) => setMateightbreaks(e.target.value)}
+          onChange={(e) => setEightbreaksmat(e.target.value)}
         />
 
         <label htmlFor="mattotalpoints">Players total match points:</label>
@@ -121,15 +121,15 @@ const MatchPageA = () => {
           type="number"
           id="mattotalpoints"
           value={mattotalpoints}
-          onChange={(e) => setMattotalpoints(e.target.value)}
+          onChange={(e) => setTotalpointsmat(e.target.value)}
         />
 
         <label htmlFor="matwinorloss">Player Won:</label>
         <input
-          type="number"
+          type="boolean"
           id="matwinorloss"
           value={matwinorloss}
-          onChange={(e) => setMatwinorloss(e.target.value)}
+          onChange={(e) => setWinorlossmat(e.target.value)}
         />
 
         <button>Create Player Match</button>

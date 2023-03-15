@@ -52,7 +52,7 @@ const Create = () => {
     } else if (data) {
       setFormError("null");
     }
-    navigate("/home")
+    navigate("/home");
   };
 
   return (

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import supabase from "../config/supabaseClient";
 
 const MatchPageB = () => {
-  const [playerstate, setPlayerstate] = useState();
+  const [playerState, setPlayerState] = useState();
   const [fetchError, setFetchError] = useState(null);
   const [players, setPlayers] = useState(null);
 
@@ -29,7 +29,7 @@ const MatchPageB = () => {
       {players && (
         <select>
           {players.map((player) => (
-            <option key={player.id} player={player}>
+            <option key={player.id} value={player.id}>
               {player.playername}
             </option>
           ))}
