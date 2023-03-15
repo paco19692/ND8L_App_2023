@@ -27,6 +27,7 @@ const TeamPage = () => {
     };
 
     fetchPlayers();
+    
   }, [orderBy]);
 
   return (
